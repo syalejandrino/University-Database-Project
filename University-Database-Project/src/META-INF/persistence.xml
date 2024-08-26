@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">
+	<persistence-unit name="LibraryDB">
+		<provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
+		
+		<class>model.Department</class>
+		<class>model.Student</class>
+		<class>model.Checkout</class>
+		<class>model.Book</class>
+	
+		
+		<properties>
+			<property name="javax.persistence.jdbc.url" value="jdbc:derby:db/LibraryDB;create=true" />
+			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
+			
+			<!-- this tells OpenJPA to automatically manage both sides of a relationship -->
+			<property name="openjpa.InverseManager" value="true" />
+			
+			<!-- this tells OpenJPA to create all the tables if they don't already exist, for testing.
+				To also delete the table contents, change 'add' to 'add,deleteTableContents' -->
+			<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(SchemaAction='add')" />
+		</properties>
+	</persistence-unit>
+</persistence>
